@@ -19,13 +19,14 @@ void setup() {
   pinMode(bStop, INPUT_PULLUP);
   pinMode(bFaster, INPUT_PULLUP);
   pinMode(bSlower, INPUT_PULLUP);
+  analogWrite(led, actualSpeed);
 }
 
 // the loop routine runs over and over again forever:
 void loop() {
   if (digitalRead(bStop) == LOW) {
     targetSpeed = 0;
-  } 
+  }
 
   if (!bFasterDown && (digitalRead(bFaster) == LOW)) {
     targetSpeed += 1;
@@ -49,6 +50,6 @@ void loop() {
     actualSpeed += limited;
     analogWrite(led, actualSpeed);
   }
-  
+
   delay(100);
 }
